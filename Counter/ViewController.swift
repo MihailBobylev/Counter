@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     enum LogChange {
         case minus
         case plus
@@ -15,24 +15,24 @@ class ViewController: UIViewController {
         case belowZero
         
         var text: String {
-            switch self {
+            return switch self {
             case .minus:
-                return "значение изменено на -1"
+                "значение изменено на -1"
             case .plus:
-                return "значение изменено на +1"
+                "значение изменено на +1"
             case .reset:
-                return "значение сброшено"
+                "значение сброшено"
             case .belowZero:
-                return "попытка уменьшить значение счётчика ниже 0"
+                "попытка уменьшить значение счётчика ниже 0"
             }
         }
     }
     
-    @IBOutlet weak var historyTextView: UITextView!
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var minusButton: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet private weak var historyTextView: UITextView!
+    @IBOutlet private weak var countLabel: UILabel!
+    @IBOutlet private weak var minusButton: UIButton!
+    @IBOutlet private weak var plusButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
     
     private var count = 0 {
         didSet {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         setupUI()
     }
     
-    @IBAction func tapMinus(_ sender: Any) {
+    @IBAction private func tapMinus(_ sender: Any) {
         if count > 0 {
             count -= 1
             logChange(.minus)
@@ -54,12 +54,12 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func tapPlus(_ sender: Any) {
+    @IBAction private func tapPlus(_ sender: Any) {
         count += 1
         logChange(.plus)
     }
     
-    @IBAction func tapReset(_ sender: Any) {
+    @IBAction private func tapReset(_ sender: Any) {
         if count != 0 {
             count = 0
             logChange(.reset)
